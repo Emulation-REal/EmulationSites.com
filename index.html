@@ -26,133 +26,154 @@
         }
 
         header {
-            background: rgba(0, 0, 0, 0.85);
-            padding: 25px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px;
             text-align: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 3px 8px rgba(0, 255, 136, 0.4);
         }
 
         header h1 {
-            font-size: 2.8em;
+            font-size: 3em;
             margin-bottom: 15px;
             color: #00ff88;
-            text-shadow: 0 0 12px #00ff88, 0 0 20px #00ff88;
+            text-shadow: 0 0 15px #00ff88, 0 0 25px #00ff88;
         }
 
         nav {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 30px;
         }
 
         nav a {
             color: #ffffff;
             text-decoration: none;
-            font-size: 1.3em;
-            padding: 12px 25px;
-            border-radius: 8px;
+            font-size: 1.4em;
+            padding: 12px 30px;
+            border-radius: 10px;
             transition: background 0.3s, color 0.3s, transform 0.2s;
         }
 
         nav a:hover {
             background: #00ff88;
             color: #000000;
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .container {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 60px 20px;
         }
 
         .section {
-            margin-bottom: 80px;
+            margin-bottom: 100px;
         }
 
         .section h2 {
-            font-size: 2.2em;
-            margin-bottom: 25px;
+            font-size: 2.5em;
+            margin-bottom: 30px;
             color: #00ff88;
-            text-shadow: 0 0 8px #00ff88;
+            text-shadow: 0 0 10px #00ff88;
             text-align: center;
         }
 
         .website-grid, .mod-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 12px;
-            padding: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 30px;
             transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
             cursor: pointer;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 255, 136, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.3);
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.5);
-            background: rgba(255, 255, 255, 0.18);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.6);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .card img {
-            width: 36px;
-            height: 36px;
-            margin-right: 12px;
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
             vertical-align: middle;
-            border-radius: 4px;
+            border-radius: 5px;
         }
 
         .card h3 {
-            font-size: 1.4em;
-            margin-bottom: 12px;
+            font-size: 1.5em;
+            margin-bottom: 15px;
             color: #ffffff;
         }
 
         .card p {
-            font-size: 0.95em;
-            color: #d1d1d1;
-            line-height: 1.5;
+            font-size: 1em;
+            color: #e0e0e0;
+            line-height: 1.6;
         }
 
-        .card .visit-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: #00ff88;
-            color: #000000;
+        .preview-container {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            display: none;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .preview-container.active {
+            display: block;
+        }
+
+        .preview-container iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 10px;
+            background: #ffffff;
+        }
+
+        .preview-container .fallback {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        .preview-container .fallback a {
+            color: #00ff88;
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 0.9em;
-            transition: background 0.3s, transform 0.2s;
+            font-weight: bold;
         }
 
-        .card .visit-btn:hover {
-            background: #00cc70;
-            transform: scale(1.05);
+        .preview-container .fallback a:hover {
+            text-decoration: underline;
         }
 
         footer {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
             text-align: center;
-            padding: 25px;
+            padding: 30px;
             position: relative;
             bottom: 0;
             width: 100%;
-            box-shadow: 0 -2px 5px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 -3px 8px rgba(0, 255, 136, 0.4);
         }
 
         footer p {
-            font-size: 1em;
-            color: #d1d1d1;
+            font-size: 1.1em;
+            color: #e0e0e0;
         }
 
         /* Particle Animation Styling */
@@ -160,18 +181,18 @@
             position: absolute;
             border-radius: 50%;
             background: #00ff88;
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2.2em;
+                font-size: 2.4em;
             }
 
             nav {
                 flex-direction: column;
-                gap: 15px;
+                gap: 20px;
             }
 
             .website-grid, .mod-grid {
@@ -181,36 +202,50 @@
             .card {
                 padding: 20px;
             }
+
+            .preview-container iframe {
+                height: 400px;
+            }
         }
 
         /* Animation Keyframes */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .section {
-            animation: fadeIn 1.2s ease-in;
+            animation: fadeIn 1.5s ease-in;
         }
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+            50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
 
         .card:hover {
-            animation: pulse 1s infinite;
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px #00ff88; }
+            50% { box-shadow: 0 0 20px #00ff88; }
+            100% { box-shadow: 0 0 5px #00ff88; }
+        }
+
+        .card.active {
+            animation: glow 2s infinite;
         }
 
         /* Mods Section Styling */
         .mod-grid .card {
-            border-left: 5px solid #00ff88;
+            border-left: 6px solid #00ff88;
         }
 
         /* Scrollbar Styling */
         ::-webkit-scrollbar {
-            width: 12px;
+            width: 14px;
         }
 
         ::-webkit-scrollbar-track {
@@ -219,17 +254,17 @@
 
         ::-webkit-scrollbar-thumb {
             background: #00ff88;
-            border-radius: 6px;
+            border-radius: 7px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: #00cc70;
         }
 
-        /* Additional Hover Effects */
+        /* Image Hover Effect */
         .card img:hover {
             transform: rotate(360deg);
-            transition: transform 0.5s;
+            transition: transform 0.6s;
         }
     </style>
 </head>
@@ -247,61 +282,55 @@
         <section id="websites" class="section">
             <h2>My Websites</h2>
             <div class="website-grid">
-                <div class="card">
+                <div class="card" data-url="https://github.com/Emulation-REal/emulationproxy.com" data-type="fallback">
                     <img src="https://github.com/favicon.ico" alt="GitHub Favicon">
                     <h3>Emulation Proxy</h3>
-                    <p>GitHub repository for Emulation Proxy project. Explore the codebase for proxy-related features.</p>
-                    <a href="https://github.com/Emulation-REal/emulationproxy.com" target="_blank" class="visit-btn">Visit Site</a>
+                    <p>GitHub repository for Emulation Proxy project. Features advanced proxy tools for emulation.</p>
                 </div>
-                <div class="card">
+                <div class="card" data-url="https://github.com/Emulation-REal/EmuHook.com" data-type="fallback">
                     <img src="https://github.com/favicon.ico" alt="GitHub Favicon">
                     <h3>EmuHook</h3>
-                    <p>GitHub repository for EmuHook project. Check out the hooking mechanisms and tools.</p>
-                    <a href="https://github.com/Emulation-REal/EmuHook.com" target="_blank" class="visit-btn">Visit Site</a>
+                    <p>GitHub repository for EmuHook project. Includes hooking mechanisms for gaming enhancements.</p>
                 </div>
-                <div class="card">
+                <div class="card" data-url="https://github.com/Emulation-REal/emulation12.com" data-type="fallback">
                     <img src="https://github.com/favicon.ico" alt="GitHub Favicon">
                     <h3>Emulation 12</h3>
-                    <p>GitHub repository for Emulation 12 project. Dive into the latest emulation features.</p>
-                    <a href="https://github.com/Emulation-REal/emulation12.com" target="_blank" class="visit-btn">Visit Site</a>
+                    <p>GitHub repository for Emulation 12 project. Showcases the latest in emulation technology.</p>
                 </div>
-                <div class="card">
+                <div class="card" data-url="https://emulation-real.github.io/Emu.io/" data-type="iframe">
                     <img src="https://github.com/favicon.ico" alt="GitHub Favicon">
                     <h3>Emu.io</h3>
-                    <p>Live website for Emu.io project. Experience the deployed emulation platform.</p>
-                    <a href="https://emulation-real.github.io/Emu.io/" target="_blank" class="visit-btn">Visit Site</a>
+                    <p>Live website for Emu.io project. A fully deployed emulation platform.</p>
                 </div>
             </div>
+            <div class="preview-container" id="website-preview"></div>
         </section>
 
         <section id="mods" class="section">
             <h2>My Mods</h2>
             <div class="mod-grid">
-                <div class="card">
+                <div class="card" data-url="https://greasyfork.org/en/scripts/540271-voxiom-io-emulation-premium-cheat-client-3-0" data-type="fallback">
                     <img src="https://greasyfork.org/favicon.ico" alt="Greasy Fork Favicon">
                     <h3>Voxiom.io Emulation Premium Cheat Client 3.0</h3>
                     <p>Enhances Voxiom.io with premium cheat features for an elevated gaming experience.</p>
-                    <a href="https://greasyfork.org/en/scripts/540271-voxiom-io-emulation-premium-cheat-client-3-0" target="_blank" class="visit-btn">View Mod</a>
                 </div>
-                <div class="card">
+                <div class="card" data-url="https://greasyfork.org/en/scripts/543023-emulation-s-slither-client" data-type="fallback">
                     <img src="https://greasyfork.org/favicon.ico" alt="Greasy Fork Favicon">
                     <h3>Emulation's Slither Client</h3>
                     <p>Custom client for Slither.io with enhanced gameplay features and controls.</p>
-                    <a href="https://greasyfork.org/en/scripts/543023-emulation-s-slither-client" target="_blank" class="visit-btn">View Mod</a>
                 </div>
-                <div class="card">
+                <div class="card" data-url="https://greasyfork.org/en/scripts/539729-emu-s-chams-gui-stats-hud" data-type="fallback">
                     <img src="https://greasyfork.org/favicon.ico" alt="Greasy Fork Favicon">
                     <h3>Emu's Chams GUI & Stats HUD</h3>
                     <p>GUI and stats HUD enhancements for immersive gaming visuals and stats tracking.</p>
-                    <a href="https://greasyfork.org/en/scripts/539729-emu-s-chams-gui-stats-hud" target="_blank" class="visit-btn">View Mod</a>
                 </div>
-                <div class="card">
+                <div class="card" data-url="https://greasyfork.org/en/scripts/543812-emulation-s-evo-client" data-type="fallback">
                     <img src="https://greasyfork.org/favicon.ico" alt="Greasy Fork Favicon">
                     <h3>Emulation's Evo Client</h3>
                     <p>Custom client for enhanced gaming with optimized features and performance.</p>
-                    <a href="https://greasyfork.org/en/scripts/543812-emulation-s-evo-client" target="_blank" class="visit-btn">View Mod</a>
                 </div>
             </div>
+            <div class="preview-container" id="mod-preview"></div>
         </section>
     </div>
 
@@ -314,21 +343,21 @@
         // Particle.js Configuration
         particlesJS('particles-js', {
             particles: {
-                number: { value: 100, density: { enable: true, value_area: 800 } },
+                number: { value: 120, density: { enable: true, value_area: 800 } },
                 color: { value: '#00ff88' },
                 shape: { type: 'circle' },
-                opacity: { value: 0.6, random: true },
-                size: { value: 4, random: true },
+                opacity: { value: 0.7, random: true },
+                size: { value: 5, random: true },
                 line_linked: {
                     enable: true,
-                    distance: 120,
+                    distance: 100,
                     color: '#00ff88',
-                    opacity: 0.5,
-                    width: 1.5
+                    opacity: 0.6,
+                    width: 2
                 },
                 move: {
                     enable: true,
-                    speed: 3,
+                    speed: 4,
                     direction: 'none',
                     random: true,
                     straight: false,
@@ -344,11 +373,44 @@
                     resize: true
                 },
                 modes: {
-                    grab: { distance: 150, line_linked: { opacity: 1 } },
-                    push: { particles_nb: 5 }
+                    grab: { distance: 160, line_linked: { opacity: 1 } },
+                    push: { particles_nb: 6 }
                 }
             },
             retina_detect: true
+        });
+
+        // Handle card clicks
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove active class from all cards
+                document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+                // Add active class to clicked card
+                this.classList.add('active');
+
+                const url = this.getAttribute('data-url');
+                const type = this.getAttribute('data-type');
+                const title = this.querySelector('h3').textContent;
+                const description = this.querySelector('p').textContent;
+                const section = this.closest('.section').id;
+                const previewContainer = document.getElementById(section === 'websites' ? 'website-preview' : 'mod-preview');
+
+                // Clear previous preview
+                previewContainer.innerHTML = '';
+
+                if (type === 'iframe') {
+                    previewContainer.innerHTML = `<iframe src="${url}" title="${title}"></iframe>`;
+                } else {
+                    previewContainer.innerHTML = `
+                        <div class="fallback">
+                            <h3>${title}</h3>
+                            <p>${description}</p>
+                            <p>This content cannot be embedded due to security restrictions. <a href="${url}" target="_blank">Visit the site</a> to view it directly.</p>
+                        </div>
+                    `;
+                }
+                previewContainer.classList.add('active');
+            });
         });
 
         // Smooth scroll for nav links
