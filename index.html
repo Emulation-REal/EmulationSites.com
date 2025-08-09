@@ -1,426 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emulation Real Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: #0a0a0a;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        header {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 30px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 3px 8px rgba(0, 255, 136, 0.4);
-        }
-
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 15px;
-            color: #00ff88;
-            text-shadow: 0 0 15px #00ff88, 0 0 25px #00ff88;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1.4em;
-            padding: 12px 30px;
-            border-radius: 10px;
-            transition: background 0.3s, color 0.3s, transform 0.2s;
-        }
-
-        nav a:hover {
-            background: #00ff88;
-            color: #000000;
-            transform: scale(1.1);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .section {
-            margin-bottom: 100px;
-        }
-
-        .section h2 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            color: #00ff88;
-            text-shadow: 0 0 10px #00ff88;
-            text-align: center;
-        }
-
-        .website-grid, .mod-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 15px;
-            padding: 30px;
-            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 255, 136, 0.3);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.6);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .card img {
-            width: 40px;
-            height: 40px;
-            margin-right: 15px;
-            vertical-align: middle;
-            border-radius: 5px;
-        }
-
-        .card h3 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
-
-        .card p {
-            font-size: 1em;
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-
-        .preview-container {
-            margin-top: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            display: none;
-            max-height: 600px;
-            overflow-y: auto;
-        }
-
-        .preview-container.active {
-            display: block;
-        }
-
-        .preview-container iframe {
-            width: 100%;
-            height: 500px;
-            border: none;
-            border-radius: 10px;
-            background: #ffffff;
-        }
-
-        .preview-container .fallback {
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-        }
-
-        .preview-container .fallback a {
-            color: #00ff88;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .preview-container .fallback a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            background: rgba(0, 0, 0, 0.9);
-            text-align: center;
-            padding: 30px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            box-shadow: 0 -3px 8px rgba(0, 255, 136, 0.4);
-        }
-
-        footer p {
-            font-size: 1.1em;
-            color: #e0e0e0;
-        }
-
-        /* Particle Animation Styling */
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: #00ff88;
-            opacity: 0.8;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.4em;
-            }
-
-            nav {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .website-grid, .mod-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .card {
-                padding: 20px;
-            }
-
-            .preview-container iframe {
-                height: 400px;
-            }
-        }
-
-        /* Animation Keyframes */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section {
-            animation: fadeIn 1.5s ease-in;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .card:hover {
-            animation: pulse 1.2s infinite;
-        }
-
-        @keyframes glow {
-            0% { box-shadow: 0 0 5px #00ff88; }
-            50% { box-shadow: 0 0 20px #00ff88; }
-            100% { box-shadow: 0 0 5px #00ff88; }
-        }
-
-        .card.active {
-            animation: glow 2s infinite;
-        }
-
-        /* Mods Section Styling */
-        .mod-grid .card {
-            border-left: 6px solid #00ff88;
-        }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 14px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #00ff88;
-            border-radius: 7px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00cc70;
-        }
-
-        /* Image Hover Effect */
-        .card img:hover {
-            transform: rotate(360deg);
-            transition: transform 0.6s;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>iistuipd Menu Test</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+  body {
+    margin: 0; padding: 0; background: #0a0a0a; 
+    font-family: 'Orbitron', monospace;
+    user-select: none;
+    overflow: hidden;
+  }
+  #modMenu {
+    position: fixed;
+    top: 100px;
+    left: 100px;
+    width: 360px;
+    height: 460px;
+    background: #111;
+    border: 2px solid #00aaff;
+    border-radius: 8px;
+    box-shadow: 0 0 12px #00aaffcc;
+    color: #00ccff;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    z-index: 9999;
+  }
+  #modMenu.hidden {
+    display: none;
+  }
+  #menuHeader {
+    background: #001f33;
+    padding: 12px;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: grab;
+    text-align: center;
+    border-bottom: 2px solid #00aaff;
+    box-shadow: 0 0 12px #00aaffcc inset;
+  }
+  #categoryTabs {
+    display: flex;
+    background: #002a44;
+    border-bottom: 2px solid #00aaff;
+  }
+  .tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+    font-weight: 700;
+    border-right: 1px solid #004466;
+    transition: background 0.25s;
+  }
+  .tab:last-child {
+    border-right: none;
+  }
+  .tab.active, .tab:hover {
+    background: #005f9e;
+    box-shadow: 0 0 8px #00aaffcc inset;
+  }
+  #modList {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+  }
+  .modBtn {
+    background: #002a44;
+    border: 1.5px solid #00aaff;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #00ccff;
+    box-shadow: 0 0 6px #0088cc99;
+    transition: all 0.3s ease;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modBtn:hover {
+    background: #004977;
+    box-shadow: 0 0 12px #00ccff;
+  }
+  .modBtn.active {
+    background: #0088cc;
+    box-shadow: 0 0 18px #00e6ff;
+    color: #001f26;
+    font-weight: 700;
+  }
+  .toggleCircle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #002a44;
+    border: 1.5px solid #00aaff;
+    transition: background 0.3s;
+  }
+  .modBtn.active .toggleCircle {
+    background: #00e6ff;
+    box-shadow: 0 0 10px #00e6ff;
+  }
+  /* Scrollbar */
+  #modList::-webkit-scrollbar {
+    width: 8px;
+  }
+  #modList::-webkit-scrollbar-track {
+    background: #001a2e;
+  }
+  #modList::-webkit-scrollbar-thumb {
+    background: #00aaff;
+    border-radius: 4px;
+  }
+  /* Tooltip style */
+  .tooltip {
+    position: relative;
+  }
+  .tooltip:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #005f9e;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    box-shadow: 0 0 6px #00aaffcc;
+    color: #00e6ff;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.3s;
+    z-index: 10000;
+  }
+</style>
 </head>
 <body>
-    <div id="particles-js"></div>
-    <header>
-        <h1>Emulation Real Portfolio</h1>
-        <nav>
-            <a href="#websites">Websites</a>
-            <a href="#mods">Mods</a>
-        </nav>
-    </header>
 
-    <div class="container">
-        <section id="websites" class="section">
-            <h2>My Websites</h2>
-            <div class="website-grid">
-                <div class="card" data-url="https://github.com/Emulation-REal/emulationproxy.com" data-type="fallback">
-                    <img src="https://github.com/favicon.ico" alt="GitHub Favicon">
-                    <h3>Emulation Proxy</h3>
-                    <p>GitHub repository for Emulation Proxy project. Features advanced proxy tools for emulation.</p>
-                </div>
-                <div class="card" data-url="https://github.com/Emulation-REal/EmuHook.com" data-type="fallback">
-                    <img src="https://github.com/favicon.ico" alt="GitHub Favicon">
-                    <h3>EmuHook</h3>
-                    <p>GitHub repository for EmuHook project. Includes hooking mechanisms for gaming enhancements.</p>
-                </div>
-                <div class="card" data-url="https://github.com/Emulation-REal/emulation12.com" data-type="fallback">
-                    <img src="https://github.com/favicon.ico" alt="GitHub Favicon">
-                    <h3>Emulation 12</h3>
-                    <p>GitHub repository for Emulation 12 project. Showcases the latest in emulation technology.</p>
-                </div>
-                <div class="card" data-url="https://emulation-real.github.io/Emu.io/" data-type="iframe">
-                    <img src="https://github.com/favicon.ico" alt="GitHub Favicon">
-                    <h3>Emu.io</h3>
-                    <p>Live website for Emu.io project. A fully deployed emulation platform.</p>
-                </div>
-            </div>
-            <div class="preview-container" id="website-preview"></div>
-        </section>
+<div id="modMenu" class="hidden" role="dialog" aria-label="iistuipd Mod Menu">
+  <div id="menuHeader" aria-grabbed="false">iistuipd Menu</div>
+  <div id="categoryTabs" role="tablist" aria-label="Mod Categories">
+    <div class="tab active" role="tab" tabindex="0" aria-selected="true" data-category="movement">Movement</div>
+    <div class="tab" role="tab" tabindex="0" aria-selected="false" data-category="visuals">Visuals</div>
+    <div class="tab" role="tab" tabindex="0" aria-selected="false" data-category="misc">Misc</div>
+  </div>
+  <div id="modList" role="tabpanel" tabindex="0"></div>
+</div>
 
-        <section id="mods" class="section">
-            <h2>My Mods</h2>
-            <div class="mod-grid">
-                <div class="card" data-url="https://greasyfork.org/en/scripts/540271-voxiom-io-emulation-premium-cheat-client-3-0" data-type="fallback">
-                    <img src="https://greasyfork.org/favicon.ico" alt="Greasy Fork Favicon">
-                    <h3>Voxiom.io Emulation Premium Cheat Client 3.0</h3>
-                    <p>Enhances Voxiom.io with premium cheat features for an elevated gaming experience.</p>
-                </div>
-                <div class="card" data-url="https://greasyfork.org/en/scripts/543023-emulation-s-slither-client" data-type="fallback">
-                    <img src="https://greasyfork.org/favicon.ico" alt="Greasy Fork Favicon">
-                    <h3>Emulation's Slither Client</h3>
-                    <p>Custom client for Slither.io with enhanced gameplay features and controls.</p>
-                </div>
-                <div class="card" data-url="https://greasyfork.org/en/scripts/539729-emu-s-chams-gui-stats-hud" data-type="fallback">
-                    <img src="https://greasyfork.org/favicon.ico" alt="Greasy Fork Favicon">
-                    <h3>Emu's Chams GUI & Stats HUD</h3>
-                    <p>GUI and stats HUD enhancements for immersive gaming visuals and stats tracking.</p>
-                </div>
-                <div class="card" data-url="https://greasyfork.org/en/scripts/543812-emulation-s-evo-client" data-type="fallback">
-                    <img src="https://greasyfork.org/favicon.ico" alt="Greasy Fork Favicon">
-                    <h3>Emulation's Evo Client</h3>
-                    <p>Custom client for enhanced gaming with optimized features and performance.</p>
-                </div>
-            </div>
-            <div class="preview-container" id="mod-preview"></div>
-        </section>
-    </div>
+<script>
+(() => {
+  const menu = document.getElementById('modMenu');
+  const header = document.getElementById('menuHeader');
+  const tabs = [...document.querySelectorAll('.tab')];
+  const modList = document.getElementById('modList');
+  let isDragging = false;
+  let dragOffsetX = 0;
+  let dragOffsetY = 0;
+  let activeCategory = 'movement';
 
-    <footer>
-        <p>&copy; 2025 Emulation Real. All rights reserved.</p>
-    </footer>
+  // Data: 12 mods per category with descriptions
+  const mods = {
+    movement: [
+      {name: 'Jetpack', tip: 'Fly through the air with a jetpack.'},
+      {name: 'Sprint Boost', tip: 'Run faster than normal.'},
+      {name: 'NoClip', tip: 'Pass through walls and objects.'},
+      {name: 'Auto Climb', tip: 'Automatically climb ledges.'},
+      {name: 'Wall Run', tip: 'Run along walls.'},
+      {name: 'Jump Boost', tip: 'Jump higher than normal.'},
+      {name: 'Dash', tip: 'Quick dash forward.'},
+      {name: 'Hover', tip: 'Hover in place while jumping.'},
+      {name: 'Step Assist', tip: 'Automatically step over obstacles.'},
+      {name: 'Speed Hack', tip: 'Modify your movement speed.'},
+      {name: 'Infinite Stamina', tip: 'Never run out of stamina.'},
+      {name: 'Gravity Modifier', tip: 'Change gravity strength.'}
+    ],
+    visuals: [
+      {name: 'Wallhack', tip: 'See through walls.'},
+      {name: 'Chams', tip: 'Colored player models.'},
+      {name: 'ESP', tip: 'Show player info and positions.'},
+      {name: 'Glow', tip: 'Add glow effect to players.'},
+      {name: 'Rainbow Hands', tip: 'Cycle hand colors.'},
+      {name: 'Night Vision', tip: 'See better in dark areas.'},
+      {name: 'Particle Effects', tip: 'Add particles to your movements.'},
+      {name: 'No Fog', tip: 'Remove fog effects.'},
+      {name: 'Custom Skybox', tip: 'Change sky appearance.'},
+      {name: 'Third Person', tip: 'Switch to third-person camera.'},
+      {name: 'Outline', tip: 'Outline nearby objects.'},
+      {name: 'Animated Menu', tip: 'Add animations to menu.'}
+    ],
+    misc: [
+      {name: 'Auto Grab', tip: 'Automatically grab objects.'},
+      {name: 'Anti AFK', tip: 'Prevent being kicked for inactivity.'},
+      {name: 'Auto Rejoin', tip: 'Automatically rejoin after disconnect.'},
+      {name: 'Name Changer', tip: 'Change your displayed name.'},
+      {name: 'Mute All', tip: 'Mute all other players.'},
+      {name: 'Auto Emote', tip: 'Automatically perform emotes.'},
+      {name: 'Chat Spam', tip: 'Spam chat with messages.'},
+      {name: 'Invisible Mode', tip: 'Become invisible to others.'},
+      {name: 'Teleport', tip: 'Instantly teleport to a location.'},
+      {name: 'Infinite Ammo', tip: 'Never run out of ammo (if applicable).'},
+      {name: 'Server Info', tip: 'Show server information.'},
+      {name: 'Debug Mode', tip: 'Enable debug info overlay.'}
+    ]
+  };
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        // Particle.js Configuration
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 120, density: { enable: true, value_area: 800 } },
-                color: { value: '#00ff88' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.7, random: true },
-                size: { value: 5, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 100,
-                    color: '#00ff88',
-                    opacity: 0.6,
-                    width: 2
-                },
-                move: {
-                    enable: true,
-                    speed: 4,
-                    direction: 'none',
-                    random: true,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: { enable: true, mode: 'grab' },
-                    onclick: { enable: true, mode: 'push' },
-                    resize: true
-                },
-                modes: {
-                    grab: { distance: 160, line_linked: { opacity: 1 } },
-                    push: { particles_nb: 6 }
-                }
-            },
-            retina_detect: true
-        });
+  // Store toggle states
+  let toggleStates = {
+    movement: new Array(mods.movement.length).fill(false),
+    visuals: new Array(mods.visuals.length).fill(false),
+    misc: new Array(mods.misc.length).fill(false),
+  };
 
-        // Handle card clicks
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', function() {
-                // Remove active class from all cards
-                document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-                // Add active class to clicked card
-                this.classList.add('active');
+  // Build mod buttons
+  function buildModButtons(category) {
+    modList.innerHTML = '';
+    mods[category].forEach((mod, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'modBtn tooltip';
+      btn.type = 'button';
+      btn.setAttribute('aria-pressed', toggleStates[category][i]);
+      btn.setAttribute('data-tip', mod.tip);
+      btn.textContent = mod.name;
 
-                const url = this.getAttribute('data-url');
-                const type = this.getAttribute('data-type');
-                const title = this.querySelector('h3').textContent;
-                const description = this.querySelector('p').textContent;
-                const section = this.closest('.section').id;
-                const previewContainer = document.getElementById(section === 'websites' ? 'website-preview' : 'mod-preview');
+      const toggleCircle = document.createElement('span');
+      toggleCircle.className = 'toggleCircle';
+      btn.appendChild(toggleCircle);
 
-                // Clear previous preview
-                previewContainer.innerHTML = '';
+      if (toggleStates[category][i]) {
+        btn.classList.add('active');
+      }
 
-                if (type === 'iframe') {
-                    previewContainer.innerHTML = `<iframe src="${url}" title="${title}"></iframe>`;
-                } else {
-                    previewContainer.innerHTML = `
-                        <div class="fallback">
-                            <h3>${title}</h3>
-                            <p>${description}</p>
-                            <p>This content cannot be embedded due to security restrictions. <a href="${url}" target="_blank">Visit the site</a> to view it directly.</p>
-                        </div>
-                    `;
-                }
-                previewContainer.classList.add('active');
-            });
-        });
+      btn.addEventListener('click', () => {
+        toggleStates[category][i] = !toggleStates[category][i];
+        btn.classList.toggle('active');
+        btn.setAttribute('aria-pressed', toggleStates[category][i]);
+        // Placeholder: here you would trigger the actual mod toggle functions
+        console.log(`Mod "${mod.name}" toggled to ${toggleStates[category][i]}`);
+      });
+      modList.appendChild(btn);
+    });
+  }
 
-        // Smooth scroll for nav links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const sectionId = this.getAttribute('href').substring(1);
-                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
+  // Tab click handler
+  function switchCategory(newCat) {
+    if (activeCategory === newCat) return;
+    activeCategory = newCat;
+    tabs.forEach(tab => {
+      const isActive = tab.dataset.category === newCat;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', isActive);
+      if (isActive) tab.focus();
+    });
+    buildModButtons(newCat);
+  }
+
+  // Handle tab keyboard navigation
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => switchCategory(tab.dataset.category));
+    tab.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        switchCategory(tab.dataset.category);
+      }
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const idx = tabs.indexOf(e.target);
+        let newIdx = idx + (e.key === 'ArrowRight' ? 1 : -1);
+        if (newIdx < 0) newIdx = tabs.length - 1;
+        if (newIdx >= tabs.length) newIdx = 0;
+        tabs[newIdx].focus();
+      }
+    });
+  });
+
+  // Drag functionality
+  header.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    dragOffsetX = e.clientX - menu.offsetLeft;
+    dragOffsetY = e.clientY - menu.offsetTop;
+    header.style.cursor = 'grabbing';
+    header.setAttribute('aria-grabbed', 'true');
+  });
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+    header.style.cursor = 'grab';
+    header.setAttribute('aria-grabbed', 'false');
+  });
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    let newX = e.clientX - dragOffsetX;
+    let newY = e.clientY - dragOffsetY;
+    // Clamp inside viewport
+    const maxX = window.innerWidth - menu.offsetWidth;
+    const maxY = window.innerHeight - menu.offsetHeight;
+    if (newX < 0) newX = 0;
+    if (newY < 0) newY = 0;
+    if (newX > maxX) newX = maxX;
+    if (newY > maxY) newY = maxY;
+    menu.style.left = newX + 'px';
+    menu.style.top = newY + 'px';
+  });
+
+  // Toggle menu visibility with ';'
+  window.addEventListener('keydown', (e) => {
+    if (e.key === ';' && !e.repeat) {
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        // Focus first tab on open for accessibility
+        tabs[0].focus();
+      } else {
+        menu.classList.add('hidden');
+      }
+    }
+  });
+
+  // Initial build
+  buildModButtons(activeCategory);
+})();
+</script>
+
 </body>
 </html>
